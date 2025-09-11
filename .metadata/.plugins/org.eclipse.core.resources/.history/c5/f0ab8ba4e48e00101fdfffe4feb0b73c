@@ -1,0 +1,13 @@
+package study03;
+
+public class Student {
+	int studentNumber;
+	String studentName;
+	int grade;
+	
+	public Student() {}
+	
+	public Student(int i, String s, int j) {
+		
+	}
+}

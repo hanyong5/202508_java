@@ -1,0 +1,14 @@
+package study02;
+
+public class DeskLamp {
+	boolean isOn;
+
+	public void turnOn() {
+		
+		
+	}
+
+	
+	
+	
+}

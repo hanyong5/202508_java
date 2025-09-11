@@ -1,0 +1,16 @@
+package study02;
+
+public class DeskLamp {
+	boolean isOn; 
+
+	public void turnOn() {
+		
+		
+	}
+
+	public String toString() {
+		return "현상태는 " + ((isOn==true)?"켜짐":"꺼짐");
+	}
+	
+	
+}

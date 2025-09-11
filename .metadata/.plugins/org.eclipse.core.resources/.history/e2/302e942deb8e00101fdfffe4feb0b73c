@@ -1,0 +1,14 @@
+package study03;
+
+public class BookTest {
+
+	public static void main(String[] args) {
+		Book myBook = new Book("삼국지","일연");
+		Book myBook1 = new Book("홍길동","허균");
+		
+		System.out.println(myBook.getBookName());
+		System.out.println(myBook.getAuthor());
+		
+	}
+
+}
