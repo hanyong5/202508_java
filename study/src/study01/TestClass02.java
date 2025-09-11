@@ -6,7 +6,10 @@ public class TestClass02 {
 
 	public static void main(String[] args) {
 		String[] str = new String[] { "서울", "부산", "대구" };
+		
 		int[] num = { 2, 1, 3, 4, 5, 30 };
+		int[] name = new int[10];
+		
 		System.out.println(str.length);
 
 		for (int i = 0; i < str.length; i++) {
@@ -38,6 +41,12 @@ public class TestClass02 {
 			}
 		}
 		System.out.println("최소값은 " + min);
+		
+		
+		
+//		for (int i: name) {
+//			System.out.println(i);
+//		}
 	}
 
 }
