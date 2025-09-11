@@ -1,0 +1,10 @@
+package study01;
+
+public class TestClass02 {
+
+	public static void main(String[] args) {
+		String[] str = new String[] {"서울","부산","대구"};
+		System.out.println(str.length);
+	}
+
+}
