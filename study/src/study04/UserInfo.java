@@ -28,6 +28,7 @@ public class UserInfo {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
+		
 	 }
 	 
 	 
@@ -85,7 +86,8 @@ public class UserInfo {
 		return "UserInfo [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
 				+ ", userEmail=" + userEmail + ", userPhone=" + userPhone + "]";
 	 }
-	 
+
+	
 	 
 	 
 	 
