@@ -9,16 +9,24 @@ public class ElecCar extends Car {
 	
 
 	
-	public ElecCar(int speed, String name, int battery) {
-		super(speed,name);
-
-		this.battery = battery;
-
-	}
+//	public ElecCar(int speed, String name, int battery) {
+//		super(speed,name);
+//
+//		this.battery = battery;
+//
+//	}
 	
+
+	public ElecCar(int i, String string, int j) {
+		super(i,string);
+		battery = j;
+		
+	}
+
 
 	public void charge(int amout) {
 		battery += amout;
+		// battery = battery + amount;
 	}
 
 
