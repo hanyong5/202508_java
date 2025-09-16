@@ -20,5 +20,9 @@ public class Animal {
 	}
 	
 	
+	public void makeSound() {
+		System.out.println(name + "짖습니다.");
+	}
+	
 	
 }
