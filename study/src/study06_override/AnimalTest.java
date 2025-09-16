@@ -5,7 +5,7 @@ public class AnimalTest {
 	public static void main(String[] args) {
 
 		Animal mydog1 = new Dog("코코",3);
-		Animal mycat1 = new Cat("나비",5);
+		Animal mycat1 = new Cat("나비",5,"red");
 		
 		mydog1.makeSound();
 		mydog1.showInfo();
