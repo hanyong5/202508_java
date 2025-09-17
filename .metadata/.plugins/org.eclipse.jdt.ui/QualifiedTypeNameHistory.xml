@@ -3,4 +3,9 @@
     <fullyQualifiedTypeName name="study02.DeskLamp"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="study04.UserInfo"/>
+    <fullyQualifiedTypeName name="study05_extends.Animal"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="study06_join.Member"/>
+    <fullyQualifiedTypeName name="study06_join.StudentMember"/>
+    <fullyQualifiedTypeName name="study06_join.TeacherMember"/>
 </qualifiedTypeNameHistroy>
