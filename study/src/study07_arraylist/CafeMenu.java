@@ -30,14 +30,50 @@ public class CafeMenu {
 					System.out.println(newMenu + "메뉴가 추가 되었습니다.");
 					break;
 				case 2:
+					if(menu.isEmpty()) {
+						System.out.println("등록된 메뉴가 없습니다");
+					}else {
+						System.out.println("카페메뉴 : ");
+						for(int i=0;i<menu.size();i++) {
+							System.out.println((i+1) + ". " + menu.get(i));
+						}
+					}
 					break;
 				case 3:
+					System.out.println("수정할 번호 입력 : ");
+					int updateIndex = sc.nextInt()-1;
+					sc.nextLine();
+					
+					
+					if(updateIndex >= 0 && updateIndex < menu.size()) {
+						System.out.println("새로운 메뉴 이름 : ");
+						String updateName = sc.nextLine();
+						menu.set(updateIndex, updateName);
+						System.out.println("메뉴가 수정되었습니다.");
+					}else {
+						System.out.println("잘못된 번호입니다.");
+					}
+					
 					break;
 				case 4:
+					System.out.println("삭제할 메뉴 번호 :");
+					int deletIndex = sc.nextInt() -1;
+					sc.nextLine();
+					
+					if(deletIndex >= 0 && deletIndex < menu.size()) {
+						String removed = menu.remove(deletIndex);
+						System.out.println(removed + "메뉴가 삭제되었습니다.");
+					}else {
+						System.out.println("잘못된 번호입니다.");
+					}
+				
 					break;
 				case 5:
 					System.out.println("프로그램 종료합니다.");
 					return;
+					
+				default:
+					System.out.println("잘못된 입력입니다.");
 			}
 		}
 		
