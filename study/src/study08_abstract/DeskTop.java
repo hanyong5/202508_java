@@ -12,6 +12,12 @@ public class DeskTop extends Computer {
 	public void turnOff() {
 		System.out.println("DeskTop을 끕니다.");
 	}
+
+	@Override
+	public void turnOn() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
