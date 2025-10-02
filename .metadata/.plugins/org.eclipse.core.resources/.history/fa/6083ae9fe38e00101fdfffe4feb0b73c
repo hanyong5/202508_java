@@ -1,7 +1,0 @@
-package study03;
-
-public class Student {
-	int studentNumber;
-	int studentName;
-	int grade;
-}

@@ -2,11 +2,8 @@ package study08_abstract;
 
 public class DeskTop extends Computer {
 
-	@Override
-	public void display() {
-		System.out.println("DeskTop display");
-		
-	}
+	
+
 
 	@Override
 	public void turnOff() {
@@ -18,6 +15,14 @@ public class DeskTop extends Computer {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void han() {}
 	
 	
 	
