@@ -7,6 +7,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.study.spring.bean.Config;
 import com.study.spring.bean.Member;
+import com.study.spring.bean.Printer;
+
 
 
 
@@ -24,9 +26,13 @@ public class Application {
 		Member member1 = (Member) context.getBean("member1");
 		member1.print();
 		
+		Member member2 = context.getBean("hello",Member.class);
+		member2.print();
 		
-		
-		
+		Printer printer = (Printer) context.getBean("printerB");
+		member1.setPrinter(printer);
+		member1.print();
+
 		
 	}
 

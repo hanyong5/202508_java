@@ -15,4 +15,21 @@ public class Config {
 		
 		return member1;
 	}
+	
+	@Bean(name="hello")
+	public Member member2() {
+		return new Member("전우치","도사",new PrinterA());
+	}
+	
+	@Bean
+	public PrinterA printerA() {
+		return new PrinterA();
+	}
+	
+	@Bean
+	public PrinterB printerB() {
+		return new PrinterB();
+	}
+	
+	
 }
