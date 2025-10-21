@@ -1,9 +1,14 @@
 package com.study.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -91,7 +96,27 @@ public class MyController {
 		return "test1"; //test1.jsp
 	}
 	
+	@RequestMapping("/test2")
+	public String test2(Model model) {
+		
+		model.addAttribute("name","홍길동");
+		return "test2"; //test2.jsp
+	}
 	
+	@RequestMapping("/test3")
+	public String test3(Model model) {
+		
+		List<String> list = new ArrayList<>();
+		
+		list.add("test1");
+		list.add("test2");
+		list.add("test3");
+		
+		model.addAttribute("lists",list);
+		
+		
+		return "test3";
+	}
 
 	
 	

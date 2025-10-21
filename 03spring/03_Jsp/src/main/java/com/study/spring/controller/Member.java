@@ -1,5 +1,6 @@
 package com.study.spring.controller;
 
+
 public class Member {
 	private String name;
 	private String age;
