@@ -4,32 +4,7 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <div class="container mt-5">
 
-	<div class="d-flex justify-content-between">
-		<h3>게시판 리스트</h3>
-		<div>게시물갯수 :</div>
-	</div>
-
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">ID</th>
-				<th scope="col">TITLE</th>
-				<th scope="col">WRITER</th>
-				<th scope="col">DELETE</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="item" items="${lists }">
-				<tr>
-					<th scope="row">${item.id }</th>
-					<td>${item.title }</td>
-					<td>${item.writer }</td>
-					<td><a href="#" class="btn btn-danger btn-sm">삭제</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	여기는 index
 
 </div>
 

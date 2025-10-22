@@ -27,14 +27,18 @@ public class BbsDAO implements IBbsDAO {
 
 	@Override
 	public Integer countDAO() {
-		
-		return null;
+		System.out.println("====================갯수 countDAO");
+		String query = "select count(*) from simple_bbs";
+		Integer count = jdbcTemplate.queryForObject(query, Integer.class);
+		return count;
 	}
 
 	@Override
 	public BbsDTO viewDAO(String id) {
-		
-		return null;
+		System.out.println("==================== 글보기 viewDAO");
+		String query = "select * from simple_bbs where id =" + id;
+		BbsDTO dto = jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<>(BbsDTO.class));
+		return dto;
 	}
 
 	@Override
