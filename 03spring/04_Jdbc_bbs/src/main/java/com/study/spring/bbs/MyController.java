@@ -1,4 +1,4 @@
-package com.study.spring.jdbc;
+package com.study.spring.bbs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,28 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
 @Controller
-
 public class MyController {
 	
 	@Autowired
-	MyDao myDao;
+	IBbsDAO dao;
 
 	@RequestMapping("/")
 	@ResponseBody
 	public String root() {
-		return "jdbc 입니다.";
+		return "안녕하세요!!!";
 	}
+	
 	
 	@GetMapping("/list")
-	public String index(Model model) {
-
-		model.addAttribute("lists",myDao.list());
+	public String list(Model model) {
+		model.addAttribute("lists",dao.listDAO());
 		return "index";
 	}
-	
-	
-	
 }
