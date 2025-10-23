@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class MyController {
 	
 	@Autowired
@@ -49,11 +51,11 @@ public class MyController {
 	// 글작성 form
 	@RequestMapping("/writeForm")
 	public String writeForm() {
-		return "writeForm";
+		return "writeForm";  //writeForm.jsp    <form action="write"></form>
 	}
 	
 	// 글작성 action write?writer= &title= &content
-	@PostMapping("/write")
+	@RequestMapping("/write")
 	public String write(HttpServletRequest request) {
 //		request.getParameter("writer")
 		
@@ -66,6 +68,14 @@ public class MyController {
 		return "redirect:list";
 	}
 	
+	// delete?id=
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request) {
+		
+		int deleteNum = dao.deleteDAO(request.getParameter("id"));
+		log.info("delete : " + deleteNum);
+		return "redirect:list";
+	}
 	
 	
 }

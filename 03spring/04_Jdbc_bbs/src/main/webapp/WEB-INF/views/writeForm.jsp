@@ -12,15 +12,15 @@
 		<form action="write" method="get" onsubmit="return validForm()">
 			<div class="mb-3">
 				<label for="name" class="form-label">작성자</label>
-				<input type="text" name="writer" id="name" class="form-control" />
+				<input type="text" name="writer" id="name" class="form-control" required />
 			</div>
 			<div class="mb-3">
 				<label for="title" class="form-label">제목</label>
-				<input type="text" name="title" id="title" class="form-control" />
+				<input type="text" name="title" id="title" class="form-control" required />
 			</div>
 			<div class="mb-3">
 				<label for="content" class="form-label">글내용</label>
-				<textarea rows="10" class="form-control" name="content"></textarea>
+				<textarea rows="10" class="form-control" name="content" required></textarea>
 				
 				
 			</div>

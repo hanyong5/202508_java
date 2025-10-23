@@ -25,11 +25,14 @@
 					<th scope="row">${item.id }</th>
 					<td><a href="view?id=${item.id}" class="nav-link">${item.title }</a></td>
 					<td>${item.writer }</td>
-					<td><a href="#" class="btn btn-danger btn-sm">삭제</a></td>
+					<td><a href="delete?id=${item.id }" class="btn btn-danger btn-sm">삭제</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="text-end">
+		<a href="./writeForm" class="btn btn-primary">글작성</a>
+	</div>
 
 </div>
 
