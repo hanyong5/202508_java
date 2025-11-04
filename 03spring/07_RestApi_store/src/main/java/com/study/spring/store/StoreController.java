@@ -59,8 +59,18 @@ public class StoreController {
 		return dao.findMenuAll();
 	}
 	
+	//~/api/menuStroe?storeId=
+	@GetMapping("/api/menuStore")
+	public List<MenuDto> menuStoreView(
+			@RequestParam("storeId") Long store_id
+			) {
+		return dao.findMenuByStoreId(store_id);
+	}
 	
-	
+	@GetMapping("/api/storeMenu")
+	public List<StoreMenuDto> storeMenuList(){
+		return dao.storeAndMenuAll();
+	}
 	
 	
 	

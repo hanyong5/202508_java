@@ -3,6 +3,7 @@ package com.study.spring.bbs;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,12 +52,17 @@ public class BbsController {
 	}
 	
 	@PutMapping("/bbs/modify")
-	public void modify(
+	public ResponseEntity<String> modify(
 			@RequestParam("id") Long id,
 			@RequestBody BbsDto request
 			) {
 		request.setId(id);
 		int updated = dao.update(request);
+		if(updated > 0) {
+			return ResponseEntity.ok("update success");
+		} else {
+			return ResponseEntity.badRequest().body("update failed");
+		}
 	}
 	
 	
