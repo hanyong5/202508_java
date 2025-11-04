@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
 
 @Mapper
 public interface IStoreDao {
@@ -33,12 +35,25 @@ public interface IStoreDao {
 		@Result(property="id",column="id"),
 		@Result(property="name",column="name"),
 		@Result(property="addr",column="addr"),
-		@Result(property="menus",column="id",
-				many = @Many(select="findMenuByStoreId")
+		@Result(property="menus",column="id",many = @Many(select="findMenuByStoreId")
 				),
 
 	})
 	List<StoreMenuDto> storeAndMenuAll();
+
+	
+	
+	@Select("select * from menu order by id desc")
+	@Results({
+		@Result(property="id",column="id"),
+		@Result(property="name",column="name"),
+		@Result(property="price",column="price"),
+		@Result(property="store_id",column="store_id"),
+		@Result(property="store",column="store_id",one = @One(select="storeView")
+				),
+
+	})
+	List<MenuStoreNameDto> menuStoreName();
 	
 	
 	

@@ -72,6 +72,10 @@ public class StoreController {
 		return dao.storeAndMenuAll();
 	}
 	
+	@GetMapping("/api/menuStoreName")
+	public List<MenuStoreNameDto> menuStoreName(){
+		return dao.menuStoreName();
+	}
 	
 	
 }
