@@ -1,4 +1,4 @@
-package com.study.spring.store;
+package com.study.spring.store.dto;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class StoreMenuDto {
-	Long id;
-	String name;
-	String addr;
-	List<MenuDto> menus;
+	public Long id;
+	public String name;
+	public String addr;
+	public List<MenuDto> menus;
 }
 
 //[

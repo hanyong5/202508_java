@@ -1,4 +1,4 @@
-package com.study.spring.store;
+package com.study.spring.store.dto;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import lombok.Getter;
 
 @Data
 public class StoreDto {
-	Long id;
-	String name;
-	String addr;
+	public Long id;
+	public String name;
+	public String addr;
 
 }

@@ -2,13 +2,13 @@ package com.study.spring.store;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.*;
+import com.study.spring.store.dto.MenuDto;
+import com.study.spring.store.dto.MenuStoreNameDto;
+import com.study.spring.store.dto.StoreDto;
+import com.study.spring.store.dto.StoreMenuDto;
+
+
 
 
 @Mapper
@@ -54,7 +54,11 @@ public interface IStoreDao {
 
 	})
 	List<MenuStoreNameDto> menuStoreName();
+
 	
+
+	
+
 	
 	
 	
