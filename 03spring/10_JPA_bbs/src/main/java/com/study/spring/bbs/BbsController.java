@@ -4,17 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -29,11 +24,43 @@ public class BbsController {
 		return "hi";
 	}
 	
+	
+	
+	// 전체데이터
+//	@GetMapping("/api/bbs")
+//	public List<Bbs> bbsList(){
+////		return bbsRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
+//		return bbsRepository.findAllByOrderByIdDesc();
+//	}
+	
+	
+	// 페이지네이션
+	//http://localhost:8080/api/bbs?size=5&page=0&title=test
 	@GetMapping("/api/bbs")
-	public List<Bbs> bbsList(){
-//		return bbsRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
-		return bbsRepository.findAllByOrderByIdDesc();
+	public Page<Bbs> bbsList(
+			@RequestParam(name="title",defaultValue="") String title,
+//			@RequestParam(name="name",defaultValue="") String name,
+			@RequestParam(name="size", defaultValue="5") int size,
+			@RequestParam(name="page",defaultValue="0") int page
+			) {
+		
+		Pageable pageable = PageRequest.of(page, size,Sort.by(Sort.Direction.DESC,"id"));
+//		return bbsRepository.findAll(pageable);
+		return bbsRepository.findByTitleContaining(title,pageable);
+//		return bbsRepository.findByTitleContainingOrNameContaining(title,name,pageable);
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //	@GetMapping("/api/bbs/{id}")
 //	public Optional<Bbs> bbsView(
