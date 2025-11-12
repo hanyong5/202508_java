@@ -39,15 +39,15 @@ public class BbsController {
 	@GetMapping("/api/bbs")
 	public Page<Bbs> bbsList(
 			@RequestParam(name="title",defaultValue="") String title,
-//			@RequestParam(name="name",defaultValue="") String name,
+			@RequestParam(name="name",defaultValue="") String name,
 			@RequestParam(name="size", defaultValue="5") int size,
 			@RequestParam(name="page",defaultValue="0") int page
 			) {
 		
 		Pageable pageable = PageRequest.of(page, size,Sort.by(Sort.Direction.DESC,"id"));
 //		return bbsRepository.findAll(pageable);
-		return bbsRepository.findByTitleContaining(title,pageable);
-//		return bbsRepository.findByTitleContainingOrNameContaining(title,name,pageable);
+//		return bbsRepository.findByTitleContaining(title,pageable);
+		return bbsRepository.findByTitleContainingOrNameContaining(title,name,pageable);
 		
 	}
 	
