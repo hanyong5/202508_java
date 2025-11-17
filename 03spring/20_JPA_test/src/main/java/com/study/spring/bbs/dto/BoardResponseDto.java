@@ -1,7 +1,8 @@
-package com.study.spring.bbs;
+package com.study.spring.bbs.dto;
 
 import java.time.LocalDateTime;
 
+import com.study.spring.bbs.Board;
 import com.study.spring.member.Member;
 
 import lombok.Data;

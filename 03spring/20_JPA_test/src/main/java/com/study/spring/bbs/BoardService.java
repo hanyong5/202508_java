@@ -1,6 +1,7 @@
 package com.study.spring.bbs;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.study.spring.bbs.dto.BoardDto;
+import com.study.spring.bbs.dto.BoardResponseDto;
+import com.study.spring.comment.Comment;
+import com.study.spring.comment.CommentRepository;
+import com.study.spring.comment.dto.CommentResponseDto;
 import com.study.spring.member.Member;
 import com.study.spring.member.MemberRepository;
 
@@ -22,6 +28,9 @@ public class BoardService {
 	
 	@Autowired
 	MemberRepository memberRepository;
+	
+	@Autowired
+	CommentRepository commentRepository;
 	
 //	 public List<Board> getBoardList() {
 //	        return boardRepository.findAll();
@@ -58,6 +67,13 @@ public class BoardService {
 		
 		Board savedBoard = boardRepository.save(board);
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedBoard);
+	}
+
+	public List<CommentResponseDto> list(Long id) {
+		List<Comment> comments = commentRepository.findByBoardId(id);
+		return comments.stream()
+				.map(comment -> CommentResponseDto.from(comment, id))
+				.toList();
 	}
 
 	

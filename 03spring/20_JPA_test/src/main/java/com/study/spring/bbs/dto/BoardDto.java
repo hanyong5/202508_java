@@ -1,4 +1,4 @@
-package com.study.spring.bbs;
+package com.study.spring.bbs.dto;
 
 import lombok.Data;
 
@@ -13,3 +13,4 @@ public class BoardDto {
 	
 }
 
+ 
