@@ -3,6 +3,8 @@ package com.study.spring.board.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -35,7 +37,16 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	List<BoardListDto> findAllListDto();
 	
 	
+	
 	@Query("select b from Board b where b.id = :id")
 	Optional<Board> findBoard(@Param("id") Long id);
+	
+	
+	
+	@Query("select b from Board b order by b.id desc")
+	Page<Board> findAllWithPage(Pageable pageable);
+	
+	
+	
 	
 }
