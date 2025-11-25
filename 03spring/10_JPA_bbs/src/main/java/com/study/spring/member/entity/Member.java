@@ -1,52 +1,60 @@
-package com.study.spring.board.entity;
+package com.study.spring.member.entity;
 
 import java.time.LocalDateTime;
-
-import com.study.spring.member.entity.Member;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name="board")
-@Getter
-@Setter
+@Table(name="member")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Board {
-	
-	@Id 
+@Builder
+public class Member {
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String title;
+	private String email;
 	private String name;
-	private String content;
-	
-	@ManyToOne
-	@JoinColumn(name="member_id")
-	private Member member;
+	private String imageFileName;
 	
 	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
+	
 	
 	@PrePersist
 	public void onCreate() {
 		this.createdAt = LocalDateTime.now();
+		this.updatedAt = LocalDateTime.now();
+	}
+	
+	@PreUpdate
+	public void onUpdate() {
+		this.updatedAt = LocalDateTime.now();
 	}
 	
 	
 	
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
 }
