@@ -29,15 +29,24 @@ public class TestBoard {
 	public void insertBoard() {
 		Member member = memberRepository.findById(1L)
 				.orElseThrow(()-> new IllegalArgumentException("멤버가 없어요"));
+//		
+//		Board board = new Board();
+//			board.setTitle("안녕하세요1");
+//			board.setContent("만나서반값습니다.1");
+//			board.setName("홍길동");
+//			board.setMember(member);
 		
-		Board board = new Board();
-			board.setTitle("안녕하세요1");
-			board.setContent("만나서반값습니다.1");
-			board.setName("홍길동");
-			board.setMember(member);
+		
+		Board board = Board.builder()
+				.title("안녕1")
+				.content("내용1")
+				.name("이순신1")
+				.member(member)
+				.build();
 			
 		Board saveBoard= boardRepository.save(board);
 		log.info("글작성" + saveBoard);
+		log.info("아이디" + member);
 		
 				
 	}

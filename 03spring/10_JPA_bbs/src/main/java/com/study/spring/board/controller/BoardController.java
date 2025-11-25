@@ -12,65 +12,84 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.spring.board.dto.BoardListDto;
+import com.study.spring.board.dto.BoardListMemberDto;
 import com.study.spring.board.entity.Board;
+import com.study.spring.board.repository.BoardRepository;
+import com.study.spring.board.service.BoardListService;
 import com.study.spring.board.service.BoardService;
 
 @RestController
 public class BoardController {
 	
+//	@Autowired
+//	BoardService boardService;
+//	
+//
+//	@GetMapping("/api")
+//	public String root() {
+//		return "test";
+//	}
+//	
+//	
+//	// 전체리스트
+//	@GetMapping("/api/board")
+//	public List<Board> getBoardList(){
+//		return boardService.getBoardList();
+//	} 
+//	
+//	
+//	// 페이징처리  reaquestparam page=0, size=10
+//	@GetMapping("/api/boardpage")
+//	public Page<Board> getBoardPageList(
+//			@RequestParam(name ="page",defaultValue = "0") int page,
+//			@RequestParam(name = "size",defaultValue = "10") int size
+//			) {
+//		
+//		
+//		return boardService.getBoardPageList(page,size);
+//	}
+// 
+//	
+//	
+//	
+//	@GetMapping("/api/boarddto")
+//	public List<BoardListDto> getBoardListDto(){
+//		return boardService.getBoardDto();
+//	}
+//	
+//	@GetMapping("/api/board/{id}")
+//	public Board getBoardView(
+//			@PathVariable("id") Long id
+//			) {
+//		return boardService.getBoard(id);
+//	}
+//	
+//	
+//	//글작성
+//	@PostMapping("/api/board")
+//	public Board boardWrite(
+//			@RequestBody Board request
+//			) {
+//		return boardService.boardWrite(request);
+//	}
+	
+	
 	@Autowired
-	BoardService boardService;
+	BoardRepository boardRepository;
 	
-
-	@GetMapping("/api")
-	public String root() {
-		return "test";
-	}
+	@Autowired
+	BoardListService boardListService;
 	
 	
-	// 전체리스트
+	//get,pagenation
+	
 	@GetMapping("/api/board")
-	public List<Board> getBoardList(){
-		return boardService.getBoardList();
-	} 
-	
-	
-	// 페이징처리  reaquestparam page=0, size=10
-	@GetMapping("/api/boardpage")
-	public Page<Board> getBoardPageList(
-			@RequestParam(name ="page",defaultValue = "0") int page,
-			@RequestParam(name = "size",defaultValue = "10") int size
-			) {
-		
-		
-		return boardService.getBoardPageList(page,size);
+	public List<BoardListMemberDto> boardList() {
+		return boardListService.findWithMemberById();
 	}
- 
-	
-	
-	
-	@GetMapping("/api/boarddto")
-	public List<BoardListDto> getBoardListDto(){
-		return boardService.getBoardDto();
-	}
-	
-	@GetMapping("/api/board/{id}")
-	public Board getBoardView(
-			@PathVariable("id") Long id
-			) {
-		return boardService.getBoard(id);
-	}
-	
-	
-	//글작성
-	@PostMapping("/api/board")
-	public Board boardWrite(
-			@RequestBody Board request
-			) {
-		return boardService.boardWrite(request);
-	}
-	
-	
+	//post
+	//update
+	//delete
 	
 	
 }
