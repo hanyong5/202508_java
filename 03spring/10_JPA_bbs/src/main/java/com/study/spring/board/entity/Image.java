@@ -19,7 +19,7 @@ public class Image {
 	
 	private String originalFileName;
 	private String fileName;
-	private int imageOrder;
+	private Integer imageOrder;
 	
 //	private String boardId;
 	
@@ -32,6 +32,7 @@ public class Image {
 	@PrePersist
 	public void onCreate() {
 		this.createdAt = LocalDateTime.now();
+		if(imageOrder==null) imageOrder=0;
 	}
 	
 	
