@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.study.spring.board.dto.BoardListImageDto;
 import com.study.spring.board.dto.BoardListMemberDto;
+import com.study.spring.board.dto.ImageDto;
 import com.study.spring.board.entity.Board;
 import com.study.spring.board.repository.BoardRepository;
 
@@ -25,6 +26,22 @@ public class BoardListService {
 		//entity
 		List<Board> boards = boardRepository.findWithImage();
 		
+//		return boards.stream()
+//				.map(b->BoardListImageDto
+//						.builder()
+//						.title(b.getTitle())
+//						.memberName(b.getMember().getName())
+//						.memberEmail(b.getMember().getEmail())
+//						.content(b.getContent())
+//						.createdAt(b.getCreatedAt())
+//						.images(null)
+//						.build())
+//				.toList();
+		
+// boards.stream().map(()->{}).toList();
+// Page<>.stream().map(()->{});		
+		
+		
 		return boards.stream()
 				.map(b->BoardListImageDto
 						.builder()
@@ -33,7 +50,13 @@ public class BoardListService {
 						.memberEmail(b.getMember().getEmail())
 						.content(b.getContent())
 						.createdAt(b.getCreatedAt())
-						.images(null)
+						.images(b.getImages().stream()
+								.map(img -> new ImageDto(
+										img.getId(),
+										img.getImageOrder(),
+										img.getFileName()
+										))
+								.toList())
 						.build())
 				.toList();
 	}
