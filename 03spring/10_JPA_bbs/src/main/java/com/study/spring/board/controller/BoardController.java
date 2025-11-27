@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.spring.board.dto.BoardListDto;
+import com.study.spring.board.dto.BoardListImageDto;
 import com.study.spring.board.dto.BoardListMemberDto;
 import com.study.spring.board.entity.Board;
 import com.study.spring.board.repository.BoardRepository;
@@ -87,6 +88,13 @@ public class BoardController {
 	public List<BoardListMemberDto> boardList() {
 		return boardListService.findWithMemberById();
 	}
+	
+	@GetMapping("/api/boardi")
+	public List<BoardListImageDto> boardListImage() {
+		return boardListService.findWithImage();
+	}
+	
+	
 	//post
 	//update
 	//delete

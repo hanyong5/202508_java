@@ -64,6 +64,16 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 			order by b.id desc
 			""")
 	List<BoardListMemberDto> findWithMemberById();
+
+	
+	@Query("""
+			select distinct b
+			from Board b
+			left join fetch b.images i
+			join fetch b.member m
+			order by b.id desc
+			""")
+	List<Board> findWithImage();
 	
 	
 	
