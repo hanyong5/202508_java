@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +96,26 @@ public class BoardController {
 	public List<BoardListImageDto> boardListImage() {
 		return boardListService.findWithImage();
 	}
+	
+	// ~/api/boardp?page=0&size=10
+	@GetMapping("/api/boardp")
+	public Page<BoardListImageDto> boardListImagePage(
+			@RequestParam(name="page",defaultValue = "0") int page,
+			@RequestParam(name="size",defaultValue = "10") int size
+			) {
+		
+//		Pageable pageable = PageRequest.of(page, size,Sort.by(Sort.Direction.DESC,"id"));
+		Pageable pageable = PageRequest.of(page, size);
+		return boardListService.findWithImagePage(pageable);
+	}
+	
+	@GetMapping("/api/board/{id}")
+	public BoardListImageDto boardListView(
+			@PathVariable("id") Long id
+			) {
+		return boardListService.findWithImageById(id);
+	}
+	
 	
 	
 	//post

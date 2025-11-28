@@ -20,4 +20,5 @@ public class BoardListImageDto {
 	private LocalDateTime createdAt;
 	
 	private List<ImageDto> images;
+	private int imageCount;
 }

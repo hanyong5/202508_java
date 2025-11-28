@@ -76,7 +76,29 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 			""")
 	List<Board> findWithImage();
 	
+	
+	
+	@Query("""
+			select distinct b
+			from Board b
+			left join fetch b.images
+			join fetch b.member
+			order by b.id desc
+			""")
+	Page<Board> findWithImagePage(Pageable pageable);
 
+	
+	@Query("""
+			select b 
+			from Board b 
+			left join fetch b.images 
+			where b.id = :id
+			""")
+	Board findWithImageById(@Param("id") Long id);
+	
+
+	
+	
 	
 	
 }
