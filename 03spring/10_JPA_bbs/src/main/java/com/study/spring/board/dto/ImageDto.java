@@ -11,4 +11,5 @@ public class ImageDto {
 	private Long id;
 	private Integer imageOrder;
 	private String fileName;
+	private String originalFileName;
 }

@@ -7,18 +7,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.study.spring.board.dto.BoardCreateDto;
 import com.study.spring.board.dto.BoardListDto;
 import com.study.spring.board.dto.BoardListImageDto;
 import com.study.spring.board.dto.BoardListMemberDto;
 import com.study.spring.board.entity.Board;
 import com.study.spring.board.repository.BoardRepository;
+import com.study.spring.board.service.BoardCreateService;
 import com.study.spring.board.service.BoardListService;
 import com.study.spring.board.service.BoardService;
 
@@ -84,6 +88,9 @@ public class BoardController {
 	@Autowired
 	BoardListService boardListService;
 	
+	@Autowired
+	BoardCreateService boardCreateService;
+	
 	
 	//get,pagenation
 	
@@ -119,6 +126,17 @@ public class BoardController {
 	
 	
 	//post
+	@PostMapping("/api/board")
+	public ResponseEntity<?> boardCreate(
+			@ModelAttribute BoardCreateDto req
+			) {
+		Long id = boardCreateService.boardCreateData(req);
+		return ResponseEntity.ok("작성완료, id: " + id);
+	}
+	
+	
+	
+	
 	//update
 	//delete
 	

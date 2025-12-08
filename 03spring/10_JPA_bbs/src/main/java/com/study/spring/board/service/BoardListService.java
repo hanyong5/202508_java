@@ -62,7 +62,8 @@ public class BoardListService {
 								.map(img -> new ImageDto(
 										img.getId(),
 										img.getImageOrder(),
-										img.getFileName()
+										img.getFileName(),
+										img.getOriginalFileName()
 										))
 								.toList())
 						.build())
@@ -84,12 +85,14 @@ public class BoardListService {
 				.memberName(p.getMember().getName())
 				.memberEmail(p.getMember().getEmail())
 				.createdAt(p.getCreatedAt())
+				.imageCount(p.getImages().size())
 				.images(p.getImages().stream()
 						.map(
 								img -> new ImageDto(
 										img.getId(),
 										img.getImageOrder(),
-										img.getFileName()
+										img.getFileName(),
+										img.getOriginalFileName()
 										)
 								)
 						.toList())
@@ -115,12 +118,13 @@ public class BoardListService {
 				.imageCount(b.getImages().size())
 				.images(b.getImages().stream()
 //						.sorted(Comparator.comparing(image -> image.getImageOrder()))
-						.sorted(Comparator.comparing(Image::getImageOrder).reversed())
+						.sorted(Comparator.comparing(Image::getImageOrder))
 						.map(
 								img -> new ImageDto(
 										img.getId(),
 										img.getImageOrder(),
-										img.getFileName()
+										img.getFileName(),
+										img.getOriginalFileName()
 										)
 								)
 						.toList())
