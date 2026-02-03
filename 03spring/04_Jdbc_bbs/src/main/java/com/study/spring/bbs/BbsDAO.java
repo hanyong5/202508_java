@@ -66,4 +66,11 @@ public class BbsDAO implements IBbsDAO {
 		return jdbcTemplate.update(query,Integer.parseInt(id)); // id String -> integer / Integer.parseInt(id)
 	}
 
+	@Override
+	public int writeDAO(BbsDTO dto) {
+		log.info("========================== 글작성");
+		String query = "insert into simple_bbs (writer,title,content) values (?,?,?)";
+		return jdbcTemplate.update(dto.getWriter(),dto.getTitle(),dto.getContent());
+	}
+
 }

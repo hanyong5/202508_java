@@ -8,4 +8,5 @@ public interface IBbsDAO {
 	public BbsDTO viewDAO(String id); // view 글내용
 	public int writeDAO(String writer,String title,String content); //글작성
 	public int deleteDAO(String id); // 글삭제
+	public int writeDAO(BbsDTO dto);
 }

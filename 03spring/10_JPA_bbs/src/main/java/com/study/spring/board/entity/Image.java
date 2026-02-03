@@ -20,8 +20,7 @@ public class Image {
 	private String originalFileName;
 	private String fileName;
 	private Integer imageOrder;
-	
-//	private String boardId;
+
 	
 	@ManyToOne
 	@JoinColumn(name="board_id")
