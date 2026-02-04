@@ -33,6 +33,7 @@ public class Member {
 	@ElementCollection(fetch=FetchType.LAZY)
 	@Builder.Default
 	private List<MemberRole> memberRoleList = new ArrayList<>();
+	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
