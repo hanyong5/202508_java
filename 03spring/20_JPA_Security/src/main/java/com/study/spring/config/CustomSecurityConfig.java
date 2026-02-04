@@ -29,9 +29,12 @@ public class CustomSecurityConfig {
 		http.sessionManagement(sessionConfig ->  sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.formLogin(config -> {
 		      config.loginPage("/api/member/login");
+		      config.successHandler(null);
+		      config.failureHandler(null);
 		      
 		    });
 		
 		return http.build();
 	}
 }
+
