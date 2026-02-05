@@ -1,7 +1,9 @@
 package com.study.spring.member.dto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,6 +34,21 @@ public class MemberDto extends User {
 		this.nickname = nickname;
 		this.social = social;
 		this.roleNames = roleNames;
+	}
+
+	public Map<String, Object> getClaims() {
+		
+		Map<String, Object> dataMap = new HashMap<>();
+		
+		dataMap.put("email", email);
+//		dataMap.put("password",pw);
+		dataMap.put("nickname",nickname);
+		dataMap.put("social",social);
+		dataMap.put("roleNames",roleNames);
+		
+		return dataMap;
+		
+		
 	}
 	
 
