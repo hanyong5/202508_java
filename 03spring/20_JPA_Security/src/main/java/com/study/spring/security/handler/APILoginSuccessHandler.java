@@ -9,6 +9,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import com.google.gson.Gson;
 import com.study.spring.member.dto.MemberDto;
+import com.study.spring.util.JWTUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,8 +34,25 @@ public class APILoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		Map<String, Object> clamis = memberDto.getClaims();
 		
-		clamis.put("accessToken", "accessToken");
-		clamis.put("refreshToken", "refreshToken");
+//		clamis.put("accessToken", JWTUtil.generateToken(clamis,10));
+//		clamis.put("refreshToken", JWTUtil.generateToken(clamis,60*24));
+		
+		String accessToken = JWTUtil.generateToken(clamis,10);
+		String refreshToken = JWTUtil.generateToken(clamis,60*24);
+		
+		
+//		httponly
+		jakarta.servlet.http.Cookie refreshTokenCookie = 
+				new jakarta.servlet.http.Cookie("refreshToken", refreshToken);
+		refreshTokenCookie.setHttpOnly(true);
+		refreshTokenCookie.setPath("/");
+		refreshTokenCookie.setMaxAge(60*60*24);
+		refreshTokenCookie.setAttribute("SameSite", "Lax"); // SameStie = Strict,Lax,None
+		response.addCookie(refreshTokenCookie);
+		
+		
+		
+		clamis.put("accessToken",accessToken);
 		
 		Gson gson = new Gson();
 		
