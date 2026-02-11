@@ -57,23 +57,20 @@ public class CustomSecurityConfig {
 		CorsConfiguration config = new CorsConfiguration();
 
 		config.setAllowedOriginPatterns(List.of("*")); // 모든 Origin 허용
-//		config.setAllowedOrigins(
-//				List.of(
-//						"http://127.0.0.1:5173",
-//						"http://localhost:5173"
-//						)
-//				);
+
+		// config.setAllowedOrigins(
+		// 		List.of(
+		// 				"http://127.0.0.1:5173",
+		// 				"http://localhost:5173"
+		// 				)
+		// 		);
 		
 		
 		config.setAllowCredentials(true);              // 반드시 false 쿠키인증이 필요시 true
 		config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
-//		config.setAllowedHeaders(List.of("*"));
-		config.setAllowedHeaders(
-				List.of(
-						"Authorization",
-						"Content_Type"
-						)
-				);
+		config.setAllowedHeaders(List.of("*"));  // 모든 헤더 허용 (CORS 프리플라이트 요청 처리)
+		config.setExposedHeaders(List.of("Authorization"));  // 클라이언트에서 접근 가능한 헤더
+		config.setMaxAge(3600L);  // 프리플라이트 요청 캐시 시간 (1시간)
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);

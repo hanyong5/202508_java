@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,25 @@ public class MemberController {
 	@GetMapping("/")
 	public String hello() {
 		return "hello";
+	}
+	
+	@GetMapping("/api/user/info")
+	public Map<String, Object> getUserInfor(
+			@AuthenticationPrincipal MemberDto principal,
+			Authentication authentication
+			) {
+		
+		if(principal == null) {
+			return Map.of("authentication",false,"message","인증되지 않은 사용자입니다.");
+		}
+		
+		return Map.of(
+				"authentication",true,
+				"username",principal.getEmail(),
+				"authorities",authentication.getAuthorities(),
+				"message","jwt인증 통과 완료"
+				
+				);
 	}
 	
 	
@@ -88,4 +108,46 @@ public class MemberController {
                 .body(Map.of("error", "토큰 갱신 중 오류가 발생했습니다."));
         }
     }
+	
+	@PostMapping("/api/auth/logout")
+	public ResponseEntity<Map<String, Object>> logout(
+			@AuthenticationPrincipal MemberDto principal,
+			HttpServletResponse response) {
+		
+		try {
+			// 1) refreshToken 쿠키 삭제
+			// 쿠키를 삭제하려면 같은 이름의 쿠키를 MaxAge 0으로 설정
+			Cookie refreshTokenCookie = new Cookie("refreshToken", null);
+			refreshTokenCookie.setHttpOnly(true);
+			refreshTokenCookie.setPath("/");
+			refreshTokenCookie.setMaxAge(0); // 쿠키 즉시 삭제
+			refreshTokenCookie.setAttribute("SameSite", "Lax");
+			response.addCookie(refreshTokenCookie);
+			
+			// 2) SecurityContext 클리어
+			SecurityContextHolder.clearContext();
+			
+			String email = principal != null ? principal.getEmail() : "알 수 없음";
+			log.info("로그아웃 성공: email={}", email);
+			
+			// 3) 성공 응답 반환
+			return ResponseEntity.ok()
+					.contentType(MediaType.APPLICATION_JSON)
+					.body(Map.of(
+							"success", true,
+							"message", "로그아웃되었습니다."
+					));
+			
+		} catch (Exception e) {
+			log.error("로그아웃 중 오류 발생", e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of(
+							"success", false,
+							"error", "로그아웃 중 오류가 발생했습니다."
+					));
+		}
+	}
+	
+	
+	
 }
